@@ -6,8 +6,11 @@
     <title>Project Flyer</title>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/libs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
+
 </head>
 <body>
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -33,13 +36,10 @@
     </div>
 
     <script type="text/javascript" src="/js/libs.js"></script>
-    <script type="text/javascript">
-        swal({
-            title: "Error!",
-            text: "Here's my error message!",
-            type: "error",
-            confirmButtonText: "Cool"
-        })
-    </script>
+
+    @yield('scripts.footer')
+
+    @include('flash')
+
 </body>
 </html>

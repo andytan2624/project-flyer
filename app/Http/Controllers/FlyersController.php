@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\FlyerRequest;
 
 use App\Flyer;
+use App\Photo;
 
 class FlyersController extends Controller
 {
@@ -27,6 +28,7 @@ class FlyersController extends Controller
      */
     public function create()
     {
+        flash()->overlay('Hello World', 'This is the message');
         return view('flyers.create');
     }
 
@@ -40,7 +42,7 @@ class FlyersController extends Controller
     {
         Flyer::Create($request->all());
 
-        flash('Flyer successfully created!');
+        flash()->success('Welcome Aboard', 'Thank you for signing up.');
 
         return redirect()->back();
     }
@@ -51,9 +53,26 @@ class FlyersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($zip, $street)
     {
-        //
+        $flyer = Flyer::locatedAt($zip, $street);
+        return view('flyers.show', compact('flyer'));
+    }
+
+    /**
+     * @param $zip
+     * @param $street
+     * @param Request $request
+     */
+    public function addPhoto($zip, $street, Request $request)
+    {
+        $this->validate($request, [
+           'photo' => 'required|mimes:jpg,jpeg,png,bmp'
+        ]);
+
+        $photo = Photo::fromForm($request->file('photo'));
+        $x = 1;
+        Flyer::locatedAt($zip, $street)->addPhoto($photo);
     }
 
     /**
