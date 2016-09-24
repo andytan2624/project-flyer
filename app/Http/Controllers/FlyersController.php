@@ -53,11 +53,13 @@ class FlyersController extends Controller
     public function store(FlyerRequest $request)
     {
 
-        Flyer::Create($request->all());
+        $flyer = $this->user->publish(
+            new Flyer($request->all())
+        );
 
-        flash()->success('Welcome Aboard', 'Thank you for signing up.');
+        flash()->success('Success!', 'Your flyer has been created.');
 
-        return redirect()->back();
+        return redirect($flyer->path());
     }
 
     /**
@@ -132,5 +134,7 @@ class FlyersController extends Controller
     public function destroy($id)
     {
         //
+        Photo::findOrFail($id)->delete();
+        return back();
     }
 }

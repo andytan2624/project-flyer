@@ -10,3 +10,5 @@ Route::post('{zip}/{street}/photos', ['as' => 'store_photo_path', 'uses' => 'Fly
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::delete('photos/{id}', 'FlyersController@destroy');

@@ -6,6 +6,7 @@ Homestead.json
 .idea/*
 vendor/
 node_modules/
+public/images/photos/*
 
 # Laravel 4 specific
 bootstrap/compiled.php

@@ -9,7 +9,11 @@
         create something more unique by building on or modifying it.
     </p>
 
-    <a href="/flyers/create" class="btn btn-primary">Create a Flyer</a>
+    @if ($signedIn)
+        <a href="/flyers/create" class="btn btn-primary">Create a Flyer</a>
+    @else
+        <a href="/register" class="btn btn-primary">Sign Up</a>
+    @endif
 </div>
 
 
